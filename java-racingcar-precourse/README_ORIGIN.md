@@ -93,14 +93,14 @@ jun : -----
     - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 
-### 프로그래밍 요구사항 - Application
-- Application 클래스를 활용해 구현해야 한다.
+### 프로그래밍 요구사항 - racingcar.Application
+- racingcar.Application 클래스를 활용해 구현해야 한다.
 - Application의 패키지 구조와 구현은 변경하지 않는다.
 - `final Scanner scanner = new Scanner(System.in);`는 변경하지 않는다.
 - `// TODO 구현 진행` 이 후 부터 구현한다.
 
 ```java
-public class Application {
+public class racingcar.Application {
     public static void main(String[] args) {
         final Scanner scanner = new Scanner(System.in);
         // TODO 구현 진행
