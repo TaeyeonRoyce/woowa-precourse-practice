@@ -5,6 +5,7 @@ import model.Game;
 import utils.DataUtils;
 import utils.InputUtils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Process {
@@ -59,6 +60,7 @@ public class Process {
 
     private void accelerateCars(int depth, int limit){
         if (depth == limit){
+            saveWinnerMove();
             return;
         }
         for(Car i : newGame.getCars()){
@@ -76,5 +78,27 @@ public class Process {
         }
         printMessage = car.getName() + " : " + printMessage;
         System.out.println(printMessage);
+    }
+    private void saveWinnerMove(){
+        for (Car i : newGame.getCars()){
+            newGame.setWinnerMove(i.getPosition());
+        }
+        saveWinner();
+    }
+    private void saveWinner(){
+        for (Car i : newGame.getCars()){
+            newGame.setWinners(i);
+        }
+        printWinner();
+    }
+    private void printWinner(){
+        String winnerMessage = "최종 우승자: ";
+        ArrayList<String> winnerList = newGame.getWinners();
+        int winnerListSize = winnerList.size();
+        for (int i = 0; i< winnerListSize - 1; i++) {
+            winnerMessage += winnerList.get(i) + ", ";
+        }
+        winnerMessage += winnerList.get(winnerListSize - 1);
+        System.out.println(winnerMessage);
     }
 }

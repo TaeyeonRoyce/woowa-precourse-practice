@@ -2,6 +2,8 @@ package utils;
 
 import model.Car;
 
+import java.util.ArrayList;
+
 public class DataUtils {
     public static int getRandomNumber(){
         final int START_INDEX = 1;
@@ -14,4 +16,5 @@ public class DataUtils {
             car.addPosition();
         }
     }
+
 }
