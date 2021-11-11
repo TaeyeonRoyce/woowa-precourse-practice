@@ -2,18 +2,18 @@ package racingcar;
 
 import model.Car;
 import model.Game;
+import utils.DataUtils;
 import utils.InputUtils;
 
 import java.util.Scanner;
 
 public class Process {
     Scanner scanner;
-    Game newGame;
+    private Game newGame;
     Process(Scanner scanner) {
         this.scanner = scanner;
     }
     public void start(){
-
         getCar();
     }
 
@@ -53,7 +53,28 @@ public class Process {
 
     private void saveGameTimes(String gameTimes) {
         newGame.setGameTimes(gameTimes);
-
+        System.out.println("실행 결과");
+        accelerateCars(0, newGame.getGameTimes());
     }
 
+    private void accelerateCars(int depth, int limit){
+        if (depth == limit){
+            return;
+        }
+        for(Car i : newGame.getCars()){
+            DataUtils.checkGoStop(i);
+            printResult(i);
+        }
+        System.out.printf("%n");
+        accelerateCars(depth+1, limit);
+    }
+    private void printResult(Car car){
+        String printMessage = "";
+        int position = car.getPosition();
+        for(int i = 0; i < position; i++){
+            printMessage += "-";
+        }
+        printMessage = car.getName() + " : " + printMessage;
+        System.out.println(printMessage);
+    }
 }

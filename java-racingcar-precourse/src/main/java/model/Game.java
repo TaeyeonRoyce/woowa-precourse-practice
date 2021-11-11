@@ -1,17 +1,22 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game {
-    private HashMap<Car, Integer> cars;
-    private int gameTimes;
+    private ArrayList<Car> cars = new ArrayList<>();
+    private int gameTimes = 0;
 
-    public HashMap<Car, Integer> getCars() {
+    public ArrayList<Car> getCars() {
         return cars;
     }
 
+    public int getGameTimes(){
+        return gameTimes;
+    }
+
     public void addCars(Car car){
-        this.cars.put(car, 0);
+        this.cars.add(car);
     }
     public void setGameTimes(String gameTimes){
         int times = Integer.parseInt(gameTimes);
