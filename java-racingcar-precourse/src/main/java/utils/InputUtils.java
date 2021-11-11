@@ -12,6 +12,7 @@ public class InputUtils {
     public void checkUserCarInput() throws IllegalArgumentException{
         String[] carList = userInput.split(",");
         for (String i : carList){
+            i.trim();
             if(!isCarLength(i)){
                 throw new IllegalArgumentException();
             }

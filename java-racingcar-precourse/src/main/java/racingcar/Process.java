@@ -19,7 +19,7 @@ public class Process {
 
     private void getCar(){
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        String userInput = scanner.next();
+        String userInput = scanner.nextLine();
         try {
             new InputUtils(userInput).checkUserCarInput();
             saveCarList(userInput);
@@ -33,7 +33,7 @@ public class Process {
         this.newGame = new Game();
         String[] carArray = cars.split(",");
         for (String i : carArray) {
-            Car newCar = new Car(i);
+            Car newCar = new Car(i.trim());
             newGame.addCars(newCar);
         }
         getTimes();
