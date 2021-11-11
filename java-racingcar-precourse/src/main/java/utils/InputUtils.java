@@ -24,4 +24,18 @@ public class InputUtils {
         }
         return true;
     }
+
+    public void checkUserTimesInput() throws IllegalArgumentException{
+        try {
+            int times = Integer.parseInt(userInput);
+            isPositive(times);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+    private void isPositive(int times) throws IllegalArgumentException{
+        if (times < 0){
+            throw new IllegalArgumentException();
+        }
+    }
 }
