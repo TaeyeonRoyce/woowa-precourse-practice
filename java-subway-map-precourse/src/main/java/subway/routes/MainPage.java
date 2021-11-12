@@ -1,9 +1,6 @@
 package subway.routes;
 
-import subway.domain.Line;
-import subway.domain.LineRepository;
-import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.domain.*;
 import subway.routes.station.StationPage;
 
 import java.util.Scanner;
@@ -16,21 +13,30 @@ public class MainPage {
     public void initApplication(){
         initStation();
         initLine();
+        initSection();
         mainPage();
     }
     private void initStation(){
-        final String[] initStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
-        for (String i : initStations){
+        final String[] INIT_STATIONS = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+        for (String i : INIT_STATIONS){
             Station station = new Station(i);
             StationRepository.addStation(station);
         }
     }
     private void initLine(){
-        final String[] initLines = {"2호선", "3호선", "신분당선"};
-        for (String i : initLines){
+        final String[] INIT_LINES = {"2호선", "3호선", "신분당선"};
+        for (String i : INIT_LINES){
             Line line = new Line(i);
             LineRepository.addLine(line);
         }
+    }
+    private void initSection(){
+        final String[] INIT_SECTION_1 = {"교대역", "강남역", "역삼역"};
+        final String[] INIT_SECTION_2 = {"교대역", "남부터미널역", "양재역", "매봉역"};
+        final String[] INIT_SECTION_3 = {"강남역", "양재역", "양재시민의숲역"};
+        SectionRepository.addSection("2호선", INIT_SECTION_1);
+        SectionRepository.addSection("3호선", INIT_SECTION_2);
+        SectionRepository.addSection("신분당선", INIT_SECTION_3);
     }
 
     private void mainPage(){
