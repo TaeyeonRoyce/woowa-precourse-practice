@@ -1,6 +1,7 @@
 package subway.routes;
 
 import subway.domain.*;
+import subway.routes.line.LinePage;
 import subway.routes.station.StationPage;
 
 import java.util.Scanner;
@@ -71,7 +72,7 @@ public class MainPage {
             new StationPage(scanner).startStation();
             return;
         } else if (userInput.equals("2")){
-
+            new LinePage(scanner).startLine();
             return;
         } else if (userInput.equals("3")){
             return;
