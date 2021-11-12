@@ -41,8 +41,18 @@ public class InputUtils {
                 ||userInputArray[0] == userInputArray[2]){
             throw new IllegalArgumentException();
         }
+        return isValidNumber(userInputArray);
+    }
+
+    private String[] isValidNumber(String[] userInputArray) throws IllegalArgumentException{
+        if(Integer.parseInt(userInputArray[0]) == 0
+                ||Integer.parseInt(userInputArray[0]) == 1
+                ||Integer.parseInt(userInputArray[0]) == 2) {
+            throw new IllegalArgumentException();
+        }
         return userInputArray;
     }
+
     public void checkRestart() throws IllegalArgumentException{
         if (!userInput.equals("1") && !userInput.equals("2")){
             throw new IllegalArgumentException();
