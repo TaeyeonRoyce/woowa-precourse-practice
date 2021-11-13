@@ -2,6 +2,8 @@ package subway.routes.line;
 
 import subway.domain.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class LinePageController {
@@ -24,7 +26,8 @@ public class LinePageController {
                 throw new IllegalArgumentException();
             }
         }
-        SectionRepository.addSection(userInput, new String[]{getFirstStation(), getLastStation()});
+        ArrayList<String> addSection = (ArrayList<String>) Arrays.asList(new String[]{getFirstStation(),getLastStation()});
+        SectionRepository.addSection(userInput, addSection);
         LineRepository.addLine(new Line(userInput));
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");
     }
