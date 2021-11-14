@@ -51,14 +51,14 @@ public class MainPage {
             "2. 노선 관리\n" +
             "3. 구간 관리\n" +
             "4. 지하철 노선도 출력\n" +
-            "Q. 종료\n"
+            "Q. 종료"
         );
         getInput();
     }
 
 
     private void getInput(){
-        System.out.println("## 원하는 기능을 선택하세요.");
+        System.out.println("\n## 원하는 기능을 선택하세요.");
         String userInput = scanner.nextLine();
         if (userInput.equals("Q")){
             return;
@@ -83,6 +83,7 @@ public class MainPage {
             new SectionPage(scanner).startSection();
             return;
         } else if (userInput.equals("4")){
+
             return;
         }
         throw new IllegalArgumentException();

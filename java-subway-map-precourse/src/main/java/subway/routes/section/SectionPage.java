@@ -36,9 +36,8 @@ public class SectionPage {
         if (userInput.equals("1")){
             sectionController.addSection();
             return;
-        } else if (userInput.equals("2")){
-            return;
-        } else if (userInput.equals("3")) {
+        } else if (userInput.equals("2")) {
+            sectionController.deleteSection();
             return;
         }
         throw new IllegalArgumentException();

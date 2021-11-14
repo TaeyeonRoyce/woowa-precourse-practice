@@ -9,23 +9,28 @@ import java.util.Scanner;
 
 public class SectionPageController {
     Scanner scanner;
-    private String addLine;
-    private String addStation;
-    private int addSectionLocation;
+    private String line;
+    private String station;
 
     public SectionPageController(Scanner scanner) {
         this.scanner = scanner;
     }
     public void addSection(){
+        System.out.println("\n## 노선을 입력하세요.");
         getLine();
+        try{
+            isExistStation(getStation());
+            getSequence();
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 노선에 이미 존재하는 역입니다.");
+        }
+
     }
     private void getLine() {
-        System.out.println("\n## 노선을 입력하세요.");
         String line = scanner.nextLine();
         for (Line i : LineRepository.lines()) {
             if (i.getName().equals(line)) {
-                this.addLine = line;
-                getStation();
+                this.line = line;
                 return;
             }
         }
@@ -33,29 +38,29 @@ public class SectionPageController {
         throw new IllegalArgumentException();
     }
 
-    private void getStation(){
+    private String getStation(){
         System.out.println("\n## 역이름을 입력하세요.");
         String station = scanner.nextLine();
         isValidStation(station);
+        return station;
     }
 
     private void isValidStation(String station){
         for (Station i : StationRepository.stations()) {
             if (i.getName().equals(station)) {
-                isExistStation(station);
+                return;
             }
         }
         System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
         throw new IllegalArgumentException();
     }
-    private void isExistStation(String station){
-        ArrayList<String> section = SectionRepository.getSectionByLine(addLine);
+    private boolean isExistStation(String station){
+        ArrayList<String> section = SectionRepository.getSectionByLine(line);
         if (section.contains(station)) {
-            System.out.println("\n[ERROR] 노선에 이미 존재하는 역입니다.");
             throw new IllegalArgumentException();
         }
-        this.addStation = station;
-        getSequence();
+        this.station = station;
+        return true;
     }
 
     private void getSequence(){
@@ -71,19 +76,39 @@ public class SectionPageController {
         }
     }
     private void isSequenceValidNumber(int sequence){
-        ArrayList<String> section = SectionRepository.getSectionByLine(addLine);
+        ArrayList<String> section = SectionRepository.getSectionByLine(line);
         int sectionSize = section.size();
         if (sequence > 0
                 || sequence < sectionSize){
-            section.add(sequence - 1, this.addStation);
-            System.out.println(section);
+            section.add(sequence - 1, this.station);
+            System.out.println("[INFO] 구간이 등록되었습니다.");
             return;
         } else if (sequence == sectionSize){
-            section.add(this.addStation);
+            section.add(this.station);
             System.out.println(section);
             return;
         }
         System.out.println("[ERROR] 해당 순서에 등록할 수 없습니다.");
         throw new IllegalArgumentException();
+    }
+
+
+    public void deleteSection(){
+        System.out.println("## 삭제할 구간의 노선을 입력하세요.");
+        getLine();
+        try{
+            String deleteStation = getStation();
+            isExistStation(deleteStation);
+            System.out.println("[ERROR] 노선에 존재하지 않는 역입니다.");
+        }catch (IllegalArgumentException e){
+            findSectionStation();
+            return;
+        }
+    }
+
+    private void findSectionStation(){
+        ArrayList<String> section = SectionRepository.getSectionByLine(line);
+        section.remove(station);
+        System.out.println("[INFO] 구간이 삭제되었습니다.");
     }
 }
