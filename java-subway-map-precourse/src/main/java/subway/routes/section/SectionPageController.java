@@ -18,13 +18,13 @@ public class SectionPageController {
     public void addSection(){
         System.out.println("\n## 노선을 입력하세요.");
         getLine();
-        try{
-            isExistStation(getStation());
-            getSequence();
-        }catch (IllegalArgumentException e){
+        String addStation = getStation();
+        if(isExistStation(addStation)){
             System.out.println("[ERROR] 노선에 이미 존재하는 역입니다.");
+            throw new IllegalArgumentException();
         }
-
+        this.station = addStation;
+        getSequence();
     }
     private void getLine() {
         String line = scanner.nextLine();
@@ -51,16 +51,15 @@ public class SectionPageController {
                 return;
             }
         }
-        System.out.println("\n[ERROR] 존재하지 않는 역입니다.");
+        System.out.println("[ERROR] 존재하지 않는 역 입니다.");
         throw new IllegalArgumentException();
     }
     private boolean isExistStation(String station){
         ArrayList<String> section = SectionRepository.getSectionByLine(line);
         if (section.contains(station)) {
-            throw new IllegalArgumentException();
+            return true;
         }
-        this.station = station;
-        return true;
+        return false;
     }
 
     private void getSequence(){
@@ -72,6 +71,7 @@ public class SectionPageController {
         try{
             isSequenceValidNumber(Integer.parseInt(sequence));
         }catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력해 주세요");
             throw new IllegalArgumentException();
         }
     }
@@ -96,14 +96,13 @@ public class SectionPageController {
     public void deleteSection(){
         System.out.println("## 삭제할 구간의 노선을 입력하세요.");
         getLine();
-        try{
-            String deleteStation = getStation();
-            isExistStation(deleteStation);
+        String deleteStation = getStation();
+        if (!isExistStation(deleteStation)){
             System.out.println("[ERROR] 노선에 존재하지 않는 역입니다.");
-        }catch (IllegalArgumentException e){
-            findSectionStation();
-            return;
+            throw new IllegalArgumentException();
         }
+        this.station = deleteStation;
+        findSectionStation();
     }
 
     private void findSectionStation(){

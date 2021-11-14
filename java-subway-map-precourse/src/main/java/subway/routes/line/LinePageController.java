@@ -26,7 +26,7 @@ public class LinePageController {
                 throw new IllegalArgumentException();
             }
         }
-        ArrayList<String> addSection = (ArrayList<String>) Arrays.asList(new String[]{getFirstStation(),getLastStation()});
+        ArrayList<String> addSection = new ArrayList<String>(Arrays.asList(getFirstStation(),getLastStation()));
         SectionRepository.addSection(userInput, addSection);
         LineRepository.addLine(new Line(userInput));
         System.out.println("\n[INFO] 지하철 노선이 등록되었습니다.");

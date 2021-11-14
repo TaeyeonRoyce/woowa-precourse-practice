@@ -7,7 +7,6 @@ import subway.routes.station.StationPage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class MainPage {
@@ -67,7 +66,7 @@ public class MainPage {
             routes(userInput);
             mainPage();
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 선택할 수 없는 기능입니다.");
+            System.out.println("\n[ERROR] 선택할 수 없는 기능입니다.");
             getInput();
         }
     }
@@ -83,7 +82,7 @@ public class MainPage {
             new SectionPage(scanner).startSection();
             return;
         } else if (userInput.equals("4")){
-
+            SectionRepository.printSubway();
             return;
         }
         throw new IllegalArgumentException();
