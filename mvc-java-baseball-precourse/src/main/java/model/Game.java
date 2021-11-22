@@ -1,5 +1,11 @@
 package main.java.model;
 
+/*
+게임에 대한 정보
+사용자 입력값, 컴퓨터 난수, 결과를 저장
+*/
+
+
 public class Game {
     private int[] userInputNumber;
     private int[] computerRandomNumber;

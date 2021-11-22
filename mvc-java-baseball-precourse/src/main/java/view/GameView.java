@@ -5,6 +5,12 @@ import main.java.model.Result;
 
 import java.util.Scanner;
 
+/*
+게임의 진행도에 따라 화면을 출력
+게임 모델에 의존한다
+*/
+
+
 public class GameView {
 
     Scanner scanner;
