@@ -1,15 +1,10 @@
 package main.java.model;
 
 public class Result {
-    private int strikeCount;
-    private int ballCount;
-
+    private int strikeCount = 0;
+    private int ballCount = 0;
     private boolean isAllStrike = false;
-
-    public Result(int strikeCount, int ballCount) {
-        this.strikeCount = strikeCount;
-        this.ballCount = ballCount;
-    }
+    private boolean isNothing = false;
 
     public int getStrikeCount() {
         return strikeCount;

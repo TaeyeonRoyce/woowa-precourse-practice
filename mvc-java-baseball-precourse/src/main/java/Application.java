@@ -1,4 +1,4 @@
-package main.java.baseball;
+package main.java;
 
 import main.java.controller.GameController;
 import main.java.view.GameView;
